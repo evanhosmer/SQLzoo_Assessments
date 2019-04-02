@@ -27,3 +27,20 @@ GROUP BY status
 Calls are not normally assigned to a manager but it does happen.
 How many calls have been assigned to staff who are at Manager Level?
 '''
+
+SELECT COUNT(*) as mlcc
+FROM Issue
+WHERE assigned_to IN (SELECT Staff_code
+FROM Staff
+WHERE Level_Code IN ('4','5','7'))
+
+'''
+Show the manager for each shift. Your output should include the shift date and type;
+also the first and last name of the manager.
+'''
+
+SELECT Shift_date, Shift_type, first_name, last_name
+FROM Shift
+JOIN Staff
+ON Shift.Manager = Staff.Staff_code
+ORDER BY Shift_date
