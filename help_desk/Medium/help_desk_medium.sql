@@ -15,3 +15,14 @@ ORDER BY Company_name
 '''
 Find the callers who have never made a call. Show first name and last name
 '''
+
+SELECT CONCAT(first_name, ' ', last_name) as name
+FROM Caller
+HAVING name NOT IN(SELECT DISTINCT CONCAT(First_name, ' ' ,Last_name)
+FROM Issue
+JOIN Caller
+ON Issue.Caller_id = Caller.Caller_id)
+
+'''
+For each customer show: Company name, contact name, number of calls where the number of calls is fewer than 5
+'''
